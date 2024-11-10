@@ -7,31 +7,31 @@
 %%
 
 % several ways to create a complex number
-z = 4 + 3i;
-z = 4 + 3*1i;
-z = 4 + 3*sqrt(-1);
+%z = 4 + 3i;
+%z = 4 + 3*1i;
+%z = 4 + 3*sqrt(-1);
 z = complex(4,3);
+%
+%disp([ 'Real part is ' num2str(real(z)) ' and imaginary part is ' num2str(imag(z)) '.' ])
 
-disp([ 'Real part is ' num2str(real(z)) ' and imaginary part is ' num2str(imag(z)) '.' ])
 
-
-% beware of a common programming error:
-i = 2;
-zz = 4 + 3*i;
+%% beware of a common programming error:
+%i = 2;
+%zz = 4 + 3*i;
 
 
 % plot the complex number
 figure(1), clf
 plot(real(z),imag(z),'s','markersize',12,'markerfacecolor','k')
 
-% make plot look nicer
-set(gca,'xlim',[-5 5],'ylim',[-5 5])
-grid on, hold on, axis square
-plot(get(gca,'xlim'),[0 0],'k','linew',2)
-plot([0 0],get(gca,'ylim'),'k','linew',2)
-xlabel('Real axis')
-ylabel('Imaginary axis')
-title([ 'Number (' num2str(real(z)) ' ' num2str(imag(z)) 'i) on the complex plane' ])
+%% make plot look nicer
+%set(gca,'xlim',[-5 5],'ylim',[-5 5])
+%grid on, hold on, axis square
+%plot(get(gca,'xlim'),[0 0],'k','linew',2)
+%plot([0 0],get(gca,'ylim'),'k','linew',2)
+%xlabel('Real axis')
+%ylabel('Imaginary axis')
+%title([ 'Number (' num2str(real(z)) ' ' num2str(imag(z)) 'i) on the complex plane' ])
 
 %% compute the two key properties of a complex number
 
@@ -63,7 +63,7 @@ grid minor
 %% [cos(k) sin(k)] are on the unit circle for any k
 
 % any real number k
-k = -654321657546546;
+k = 643;
 
 % and plot
 figure(3), clf
@@ -82,7 +82,7 @@ x = linspace(-pi,pi,100);
 h = plot(cos(x),sin(x));
 set(h,'color',[1 1 1]*.7) % light gray
 
-uistack(h1,'top'); % put red circle on top 
+uistack(h1,'top'); % put red circle on top
 
 %% ... and so is the angle defined by Euler's formula
 
@@ -118,10 +118,10 @@ ylabel('Imaginary axis')
 h = polar([0 phs],[0 mag],'r');
 set(h,'linewidth',2)
 
-% title 
+% title
 title([ 'Rectangular: [' num2str(real(compnum)) ' ' num2str(imag(compnum)) 'i ], ' ...
         'Polar: ' num2str(mag) 'e^{i' num2str(phs) '}' ])
-    
+
 %%
 %     COURSE: Understand the Fourier transform and its applications
 %    SECTION: Foundations
@@ -264,10 +264,10 @@ title('Signal')
 
 dps = zeros(size(sinefrex));
 for fi=1:length(dps)
-    
+
     % create sine wave
     sinew = sin( 2*pi*sinefrex(fi)*time);
-    
+
     % compute dot product
     dps(fi) = dot( sinew,signal ) / length(time);
 end
@@ -314,10 +314,10 @@ title('Signal')
 
 dps = zeros(size(sinefrex));
 for fi=1:length(dps)
-    
+
     % create complex sine wave
     sinew = exp( 1i*2*pi*sinefrex(fi)*time);
-    
+
     % compute dot product
     dps(fi) = dot( sinew,signal ) / length(time);
 end
@@ -367,7 +367,7 @@ ylabel('Sine axis')
 h = polar([0 phs],[0 mag],'r');
 set(h,'linewidth',2)
 
-% title 
+% title
 title([ 'Rectangular: [' num2str(real(dp_complex)) ' ' num2str(imag(dp_complex)) 'i ], ' ...
         'Polar: ' num2str(mag) 'e^{i' num2str(phs) '}' ])
 
@@ -405,34 +405,34 @@ title('Real number line')
 
 
 for phi=1:length(phases)
-    
+
     % create signal
     signal = sin(2*pi*5*time + phases(phi)) .* exp( (-time.^2) / .1);
-    
+
     % compute complex dot product
     cdp = sum( signal.*csw ) / length(time);
-    
+
     % compute real-valued dot product
     rdp = sum( signal.*rsw ) / length(time);
-    
+
     % plot signal and real part of sine wave
     subplot(211)
     plot(time,signal, time,rsw,'linew',2)
     title('Signal and sine wave over time')
-    
+
     % plot complex dot product
     subplot(223)
     set(ch,'XData',real(cdp),'YData',imag(cdp))
-    
+
     % draw normal dot product
     subplot(224)
     set(rh,'XData',rdp)
-    
+
     % wait a bit
     pause(.1)
 end
 
 %% end.
 
-% Interested in more courses? See sincxpress.com 
+% Interested in more courses? See sincxpress.com
 % Use code MXC-DISC4ALL for the lowest price for all courses.

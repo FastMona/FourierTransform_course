@@ -9,16 +9,16 @@
 %% The DTFT in loop-form
 
 % create the signal
-srate  = 1000; % hz
-time   = 0:1/srate:2; % time vector in seconds
+srate  = 3000; % hz
+time   = 0:1/srate:2; % time vector in seconds from 0 to 2
 pnts   = length(time); % number of time points
 signal = 2.5 * sin( 2*pi*4*time ) ...
        + 1.5 * sin( 2*pi*6.5*time );
 
 
 % prepare the Fourier transform
-fourTime = (0:pnts-1)/pnts;
-fCoefs   = zeros(size(signal));
+fourTime = (0:pnts-1)/pnts;    % NORMALIZATION OF TIME
+fCoefs   = zeros(size(signal));% BUILD EMPTY VECTOR
 
 for fi=1:pnts
     
@@ -27,11 +27,12 @@ for fi=1:pnts
     
     % compute dot product between sine wave and signal
     fCoefs(fi) = sum( signal.*csw ) / pnts;
+    %fCoefs(fi) = dot (csw, signal) / pnts;
     % these are called the Fourier coefficients
 end
 
 % extract amplitudes
-ampls = 2*abs(fCoefs);
+ampls = 2*abs(fCoefs);         % MULTIPLY BY 2
 
 % compute frequencies vector
 hz = linspace(0,srate/2,floor(pnts/2)+1);
@@ -43,7 +44,7 @@ xlabel('Time (s)'), ylabel('Amplitude')
 title('Time domain')
 
 subplot(212)
-plot(hz,ampls(1:length(hz)),'ks-','linew',3,'markersize',15,'markerfacecolor','w')
+stem(hz,ampls(1:length(hz)),'ks-','linew',3,'markersize',15,'markerfacecolor','w')
 
 % make plot look a bit nicer
 set(gca,'xlim',[0 10],'ylim',[-.01 3])
@@ -56,11 +57,11 @@ title('Frequency domain')
 fCoefsF = fft(signal)/pnts;
 amplsF  = 2*abs(fCoefsF);
 hold on
-% plot(hz,amplsF(1:length(hz)),'ro','markerfacecolor','r')
+plot(hz,amplsF(1:length(hz)),'ro','markerfacecolor','r')
 
 %% plot two Fourier coefficients
 
-coefs2plot = dsearchn(hz',[4 4.5]');
+coefs2plot = dsearchn(hz',[6 6.5]');
 
 % extract magnitude and angle
 mag = abs(fCoefs(coefs2plot));
@@ -125,7 +126,7 @@ legend({'Real';'Imag'})
 
 % some parameters
 srate = 1000;
-npnts = 1200;
+npnts = 12000;
 
 % frequencies vector
 if mod(npnts,2)==0
@@ -172,7 +173,7 @@ hz2 = linspace(0,srate,npnts);
 figure(1), clf, hold on
 stem(hz1(1:npnts),signalX,'bs-','linew',3,'markersize',12)
 stem(hz2,signalX,'ro-','linew',3,'markersize',12)
-axis([14.9 15.1 .99 1.01])
+axis([14.99 15.02 .99 1.01])
 title([ num2str(length(time)) ' points' ])
 xlabel('Frequency (Hz)'), ylabel('Amplitude')
 legend({'N+1';'N'})

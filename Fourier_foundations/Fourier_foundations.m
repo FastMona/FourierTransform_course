@@ -9,7 +9,7 @@
 % several ways to create a complex number
 %z = 4 + 3i;
 %z = 4 + 3*1i;
-%z = 4 + 3*sqrt(-1);
+%z = 5 + 3*sqrt(-1);
 z = complex(4,3);
 %
 %disp([ 'Real part is ' num2str(real(z)) ' and imaginary part is ' num2str(imag(z)) '.' ])
@@ -20,18 +20,18 @@ z = complex(4,3);
 %zz = 4 + 3*i;
 
 
-% plot the complex number
-figure(1), clf
-plot(real(z),imag(z),'s','markersize',12,'markerfacecolor','k')
-
-%% make plot look nicer
-%set(gca,'xlim',[-5 5],'ylim',[-5 5])
-%grid on, hold on, axis square
-%plot(get(gca,'xlim'),[0 0],'k','linew',2)
-%plot([0 0],get(gca,'ylim'),'k','linew',2)
-%xlabel('Real axis')
-%ylabel('Imaginary axis')
-%title([ 'Number (' num2str(real(z)) ' ' num2str(imag(z)) 'i) on the complex plane' ])
+% % plot the complex number
+% figure(1), clf
+% plot(real(z),imag(z),'s','markersize',12,'markerfacecolor','k')
+% 
+% % make plot look nicer
+% set(gca,'xlim',[-5 5],'ylim',[-5 5])
+% grid on, hold on, axis square
+% plot(get(gca,'xlim'),[0 0],'k','linew',2)
+% plot([0 0],get(gca,'ylim'),'k','linew',2)
+% xlabel('Real axis')
+% ylabel('Imaginary axis')
+% title([ 'Number (' num2str(real(z)) ' ' num2str(imag(z)) 'i) on the complex plane' ])
 
 %% compute the two key properties of a complex number
 
@@ -41,7 +41,7 @@ magZ = abs( z );
 
 % angle of the line relative to positive real axis
 angZ = atan2( imag(z),real(z) );
-angZ = angle( z );
+angZ1 = angle( z );
 
 %%
 %     COURSE: Understand the Fourier transform and its applications
@@ -63,7 +63,7 @@ grid minor
 %% [cos(k) sin(k)] are on the unit circle for any k
 
 % any real number k
-k = 643;
+k = -3.5416;
 
 % and plot
 figure(3), clf
@@ -95,7 +95,7 @@ set(h,'linewidth',2)
 %% Euler's formula with arbitrary vector magnitude
 
 % use Euler's formula to plot vectors
-m = 4;
+m = -4;
 k = pi/3;
 compnum = m*exp( 1i*k );
 
@@ -139,7 +139,7 @@ ampl = 2;    % amplitude in a.u.
 phas = pi/3; % phase in radians
 
 % general simulation parameters
-srate = 500; % sampling rate in Hz
+srate = 600; % sampling rate in Hz
 time  = 0:1/srate:2-1/srate; % time in seconds
 
 % generate the sine wave
@@ -216,12 +216,12 @@ dp = sum( v1.*v2 );
 %% dot products of sine waves
 
 % general simulation parameters
-srate = 500; % sampling rate in Hz
+srate = 5000; % sampling rate in Hz
 time  = 0:1/srate:2-1/srate; % time in seconds
 
 % sine wave parameters
-freq1 = 5;    % frequency in Hz
-freq2 = 5;    % frequency in Hz
+freq1 = 5.0;    % frequency in Hz
+freq2 = 5.0;    % frequency in Hz
 
 ampl1 = 2;    % amplitude in a.u.
 ampl2 = 2;    % amplitude in a.u.
@@ -242,7 +242,7 @@ disp([ 'dp = ' num2str( dp ) ])
 %% with a signal
 
 % phase of signal
-theta = 0*pi/4;
+theta = 2*pi/4;
 
 
 % simulation parameters
@@ -292,7 +292,7 @@ title([ 'Dot product of signal and sine waves (' num2str(theta) ' rad. offset)' 
 %% Same as previous video but with complex sine wave
 
 % phase of signal
-theta = 0*pi/4;
+theta = 2*pi/4;
 
 
 % simulation parameters
@@ -333,7 +333,7 @@ title([ 'Dot product of signal and sine waves (' num2str(theta) ' rad. offset)' 
 %% more detail...
 
 % phase of signal
-theta = 0*pi/4;
+theta = 4*pi/4;
 
 % signal
 signal = sin(2*pi*5*time + theta) .* exp( (-time.^2) / .1);
@@ -429,7 +429,7 @@ for phi=1:length(phases)
     set(rh,'XData',rdp)
 
     % wait a bit
-    pause(.1)
+    pause(.05)
 end
 
 %% end.
